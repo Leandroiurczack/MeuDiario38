@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Diário</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        h1 {
+            text-align: center;
+        }
+        .entry-form {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .entry {
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Meu Diário</h1>
+
+<div class="entry-form">
+    <h2>Adicionar Nova Entrada</h2>
+    <form id="diaryForm">
+        <label for="date">Data:</label><br>
+        <input type="date" id="date" required><br><br>
+        
+        <label for="entry">Entrada:</label><br>
+        <textarea id="entry" rows="4" required></textarea><br><br>
+        
+        <button type="submit">Adicionar Entrada</button>
+    </form>
+</div>
+
+<h2>Entradas do Diário</h2>
+<div id="entries"></div>
+
+<script>
+    document.getElementById('diaryForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const date = document.getElementById('date').value;
+        const entryText = document.getElementById('entry').value;
+
+        const entryDiv = document.createElement('div');
+        entryDiv.classList.add('entry');
+        
+        entryDiv.innerHTML = `<strong>${date}</strong><br>${entryText}`;
+        
+        document.getElementById('entries').appendChild(entryDiv);
+
+        // Limpar o formulário
+        this.reset();
+    });
+</script>
+
+</body>
+</html>
